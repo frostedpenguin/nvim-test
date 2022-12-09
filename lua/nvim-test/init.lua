@@ -41,6 +41,7 @@ function M.run(scope)
 
     -- Prepare run context
     local cmd = runner:build_cmd(filename, opts)
+    print(vim.inspect(cmd))
     local cfg = { env = runner.config.env, working_directory = runner.config.working_directory }
 
     -- Save last run
