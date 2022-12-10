@@ -68,7 +68,8 @@ end
 ---Get a runner by the given filetype
 ---@return Runner runner
 function M.get_runner(filetype, default)
-  local runner_module = M.runners[filetype]
+  local runner_path = 'nvim-test.runners.'
+  local runner_module = runner_path .. M.runners[filetype]
   if runner_module then
     local _, runner = pcall(require, runner_module)
     if runner then
@@ -128,7 +129,7 @@ end
 
 -- Setup the plugin
 ---
----@param cfg table: a table with configuration
+---@param cfg {runners: runners}  a table with configuration
 function M.setup(cfg)
   -- Update config
   if cfg ~= nil then
